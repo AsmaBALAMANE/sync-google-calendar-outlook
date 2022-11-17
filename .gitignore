@@ -11,3 +11,7 @@ CTAGS
 .idea
 .env
 .git
+.vercel
+.next
+cache
+next
