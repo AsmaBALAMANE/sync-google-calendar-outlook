@@ -27,14 +27,18 @@ const Home = () => {
     setEventData(data);
   }, [])
 
+  console.log(eventData)
+  
   const onConnectAccount = () => {
     const emailToAuthenticate = inputRef.current.value;
+    const responseType = 'code';
+    const scopes = 'calendar.read_only';
 
-    const CLIENT_ID = process.env.NEXT_PUBLIC_NYLAS_CLIENT_ID;
-    const REDIRECT_URI = `${process.env.NEXT_PUBLIC_VERCEL_URI}/api/nylas_callback`;
-
-    window.location = `https://api.nylas.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&login_hint=${emailToAuthenticate}&response_type=code&scopes=calendar.read_only`
-
+    const CLIENT_ID = process.env.NEXT_PUBLIC_NYLAS_CLIENT_ID_V3;
+    const REDIRECT_URI = `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/nylas_callback`;
+    
+    // Note: removed &provider={{provider}}
+    window.location = `https://api.us.nylas.com/v3/connect/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${responseType}&login_hint=${emailToAuthenticate}&scopes=${scopes}`
   };
 
   const { defaultDate, getNow, localizer, scrollToTime } = useMemo(() => {
@@ -55,7 +59,6 @@ const Home = () => {
     }
   }, [timezone]);
 
-  console.log(57, eventData);
   return (
     <Page>
     <Text h1><span style={{ color: '#0070f3' }}>🗓️ CalSync </span>built with Nylas</Text>
@@ -64,6 +67,7 @@ const Home = () => {
     <ButtonGroup type="success">
       <Button  onClick={onConnectAccount}>Connect Account</Button>
     </ButtonGroup>
+
     <div>
 			{ eventData.length !== 0 && (
         <Calendar
