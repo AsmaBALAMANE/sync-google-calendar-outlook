@@ -1,5 +1,5 @@
 # Building Calendar Sync Functionality
-This sample repo will show you how to easily sync Google and Outlook calendars with Nylas.
+This sample repo will show you how to easily sync Google and Outlook calendars with Nylas API v3.
 
 ## Setup
 
