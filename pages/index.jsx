@@ -36,7 +36,7 @@ const Home = () => {
     const scopes = 'calendar.read_only';
 
     const CLIENT_ID = "57e8ebc1-3c6a-4b20-bf4a-0420ac583d37";//process.env.NEXT_PUBLIC_NYLAS_CLIENT_ID_V3;
-    const REDIRECT_URI =`http://localhost:3000/api/nylas_callback`; //`https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/nylas_callback`;
+    const REDIRECT_URI = `https://repo-989a.vercel.app/api/nylas_callback`; //`http://localhost:3000/api/nylas_callback`; //`https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api/nylas_callback`;
     
     // Note: removed &provider={{provider}}
     window.location = `https://api.eu.nylas.com/v3/connect/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${responseType}&login_hint=${emailToAuthenticate}&scopes=${scopes}`

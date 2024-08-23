@@ -1,14 +1,14 @@
 import { createClient } from '@supabase/supabase-js'
 import { mapEventData } from '../../utils/mapEventData';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = "https://vgrlrrpnctpxjzzqlwqr.supabase.co"; //process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZncmxycnBuY3RweGp6enFsd3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ0MjU0NDEsImV4cCI6MjA0MDAwMTQ0MX0.Z3xU1gcYY41mnSCDIfoeoqBzi7KhVR0g0Tq0Jk5J0iw";//process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function handler(req, res) {
   console.log('req.query.code', req.query.code)
   const client_id =  "57e8ebc1-3c6a-4b20-bf4a-0420ac583d37";//process.env.NYLAS_CLIENT_ID_V3;
-  const redirect_uri = `http://localhost:3000/api/nylas_callback`;//`${process.env.NEXT_PUBLIC_VERCEL_URI}/api/nylas_callback`;
+  const redirect_uri = `https://repo-989a.vercel.app/api/nylas_callback`;//`${process.env.NEXT_PUBLIC_VERCEL_URI}/api/nylas_callback`;
   const client_secret ="nyk_v0_z9MWd2rvuEhEJl7MhNgRF4wKt8CIQ0mkTQSrGRYyQE90IZr2fNzSSYtz8H5QE2m1";// process.env.NYLAS_CLIENT_SECRET_V3;
   const bearerToken = process.env.NYLAS_API_KEY;
   const code = req.query.code;
