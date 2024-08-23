@@ -7,9 +7,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function handler(req, res) {
   console.log('req.query.code', req.query.code)
-  const client_id = process.env.NYLAS_CLIENT_ID_V3;
-  // const redirect_uri = `${process.env.NEXT_PUBLIC_VERCEL_URI}/api/nylas_callback`;
-  const client_secret = process.env.NYLAS_CLIENT_SECRET_V3;
+  const client_id =  "57e8ebc1-3c6a-4b20-bf4a-0420ac583d37";//process.env.NYLAS_CLIENT_ID_V3;
+  const redirect_uri = `http://localhost:3000/api/nylas_callback`;//`${process.env.NEXT_PUBLIC_VERCEL_URI}/api/nylas_callback`;
+  const client_secret ="nyk_v0_z9MWd2rvuEhEJl7MhNgRF4wKt8CIQ0mkTQSrGRYyQE90IZr2fNzSSYtz8H5QE2m1";// process.env.NYLAS_CLIENT_SECRET_V3;
   const bearerToken = process.env.NYLAS_API_KEY;
   const code = req.query.code;
 
@@ -39,7 +39,7 @@ export default function handler(req, res) {
     redirect: "follow"
   };
 
-  fetch("https://api.us.nylas.com/v3/connect/token", requestOptions)
+  fetch("https://api.eu.nylas.com/v3/connect/token", requestOptions)
   .then(response => response.text())
   .then(response => {
     const userData = JSON.parse(response);
@@ -49,7 +49,7 @@ export default function handler(req, res) {
     console.log('userData.grant_id', userData.grant_id)
     grantId = userData.grant_id;
 
-    return fetch(`https://api.us.nylas.com/v3/grants/${grantId}/calendars/primary`, {
+    return fetch(`https://api.eu.nylas.com/v3/grants/${grantId}/calendars/primary`, {
       method: 'GET',
       headers,
       redirect: 'follow'
@@ -67,7 +67,7 @@ export default function handler(req, res) {
     // 604800 is 7 days in seconds
     const future = now + 604800;
 
-    return fetch(`https://api.us.nylas.com/v3/grants/${grantId}/events?limit=50&calendar_id=primary&start=${now}&end=${future}`, {
+    return fetch(`https://api.eu.nylas.com/v3/grants/${grantId}/events?limit=50&calendar_id=primary&start=${now}&end=${future}`, {
       method: 'GET',
       headers,
       redirect: 'follow'
