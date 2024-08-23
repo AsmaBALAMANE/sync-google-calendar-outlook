@@ -5,9 +5,10 @@ import { Calendar, luxonLocalizer, Views } from 'react-big-calendar'
 import { DateTime, Settings } from 'luxon'
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = "https://vgrlrrpnctpxjzzqlwqr.supabase.co"; //process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZncmxycnBuY3RweGp6enFsd3FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ0MjU0NDEsImV4cCI6MjA0MDAwMTQ0MX0.Z3xU1gcYY41mnSCDIfoeoqBzi7KhVR0g0Tq0Jk5J0iw";//process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
+
 
 function getDate(str, DateTimeObj) {
   return DateTimeObj.fromISO(str).toJSDate()
